@@ -1,3 +1,4 @@
+
 require_relative 'person'
 require_relative 'book'
 require_relative 'student'
@@ -13,11 +14,11 @@ class App
   end
 
   def list_all_books
-    puts(@books.map { |book| "Title: \"#{book.title}\", Author: #{book.author}" })
+    puts @books.map { |book| "Title: \"#{book.title}\", Author: #{book.author}" }
   end
 
   def list_all_people
-    puts(@people.map { |person| "[#{person.type}] Name: #{person.name}, ID: #{person.id} Age: #{person.age}" })
+    puts @people.map { |person| "[#{person.type}] Name: #{person.name}, ID: #{person.id} Age: #{person.age}" }
   end
 
   def create_a_person(choice, name, age)
@@ -42,21 +43,22 @@ class App
   end
 
   def create_a_rental
-    puts 'Select a book from the following list by number'
-    list_books
-    index_book = gets.chomp.to_i
+  puts 'Select a book from the following list by number'
+  list_books
+  index_book = gets.chomp.to_i
 
-    puts 'Select a person from the following list by number (not id)'
-    list_people
-    index_person = gets.chomp.to_i
+  puts 'Select a person from the following list by number (not id)'
+  list_people
+  index_person = gets.chomp.to_i
 
-    print 'Date: '
-    date = gets.chomp
+  print 'Date: '
+  date = gets.chomp
 
-    rental = Rental.new(date, @people[index_person], @books[index_book])
-    @rentals << rental
-    puts 'Rental created successfully'
-  end
+  rental = Rental.new(date, @people[index_person], @books[index_book])
+  @rentals << rental
+  puts 'Rental created successfully'
+end
+
 
   def list_all_rentals_for_a_given_person_id
     puts 'ID of person: '
@@ -75,13 +77,13 @@ class App
     permission = %w[y yes].include?(parent)
     label = 'math'
     classroom = Classroom.new(label)
-    Student.new(classroom, age, name:, parent_permission: permission)
+    Student.new(classroom, age, name: name, parent_permission: permission)
   end
 
   def create_a_teacher(name, age)
     print 'Specialization: '
     specialization = gets.chomp
-    Teacher.new(specialization, age, name:)
+    Teacher.new(specialization, age, name: name)
   end
 
   def list_books
